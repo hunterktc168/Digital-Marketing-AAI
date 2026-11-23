@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-canvas: #F4F6F8;
+    --bg-surface: #FFFFFF;
+    --bg-well: #EAEEF3;
+    --bg-hover: #E1E7EE;
+    --border-subtle: #DCE2E9;
+    --border-strong: #B5C1CE;
+    --text-primary: #0B1118;
+    --text-secondary: #435263;
+    --text-muted: #64748B;
+    --accent: #0F766E;
+    --accent-hover: #0D5D57;
+    --accent-fg: #FFFFFF;
+    --accent-soft: rgba(15, 118, 110, 0.10);
+    --accent-border: rgba(15, 118, 110, 0.30);
+    --dot-color: rgba(11, 17, 24, 0.08);
+    --shadow-elevated: 0 12px 32px -12px rgba(11, 17, 24, 0.12);
+
+    --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  .dark {
+    --bg-canvas: #0A0F14;
+    --bg-surface: #111820;
+    --bg-well: #17202B;
+    --bg-hover: #1E2936;
+    --border-subtle: #232F3E;
+    --border-strong: #364659;
+    --text-primary: #EDF2F7;
+    --text-secondary: #A4B4C6;
+    --text-muted: #7C8EA3;
+    --accent: #2DD4BF;
+    --accent-hover: #5EEAD4;
+    --accent-fg: #061D1A;
+    --accent-soft: rgba(45, 212, 191, 0.12);
+    --accent-border: rgba(45, 212, 191, 0.34);
+    --dot-color: rgba(237, 242, 247, 0.07);
+    --shadow-elevated: 0 18px 40px -14px rgba(0, 0, 0, 0.55);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+                color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.studio-grid-bg {
+  background-image: radial-gradient(var(--dot-color) 1.25px, transparent 1.25px);
+  background-size: 24px 24px;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card-enter {
+  animation: cardEnter 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-smooth {
+  animation: spinSlow 0.9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-card-enter,
+  .animate-spin-smooth {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
